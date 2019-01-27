@@ -64,5 +64,17 @@ serviceWorker.workbox.routing.setDefaultHandler(({ event }) => {
   return networkFirstHandler.handle({ event });
 });
 
+const bgSyncPlugin = new serviceWorker.workbox.backgroundSync.Plugin('QRUN', {
+    maxRetentionTime: 24 * 60 // Retry for max of 24 Hours
+});
+
+serviceWorker.workbox.routing.registerRoute(
+    /\/api\/v3\/qrun/,
+    serviceWorker.workbox.strategies.networkOnly({
+        plugins: [bgSyncPlugin]
+    }),
+    'POST'
+);
+
 // eslint-disable-next-line
 serviceWorker.workbox.precaching.precacheAndRoute(serviceWorker.__precacheManifest);
