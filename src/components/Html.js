@@ -124,8 +124,15 @@ class Html extends Component {
           ])}
           {env.react && env.react === 'cdn' && ([
             <link rel="dns-prefetch" key="dns-unpkg-com" href="//unpkg.com" />,
-            <script key="cdn-react-unpkg-com" crossOrigin src={`https://unpkg.com/react@${React.version}/umd/react.production.min.js`} />,
-            <script key="cdn-react-dom-unpkg-com" crossOrigin src={`https://unpkg.com/react-dom@${React.version}/umd/react-dom.production.min.js`} />,
+            <script key="cdn-react-unpkg-com" crossOrigin="true" src={`https://unpkg.com/react@${React.version}/umd/react.production.min.js`} />,
+            <script key="cdn-react-dom-unpkg-com" crossOrigin="true" src={`https://unpkg.com/react-dom@${React.version}/umd/react-dom.production.min.js`} />,
+          ])}
+          {env.semantic_css && env.semantic_css === 'cdn' && ([
+            <link rel="dns-prefetch" key="dns-jsdelivr" href="//cdn.jsdelivr.net" />,
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.1/dist/semantic.min.css"
+              crossOrigin="true" key="cdn-jsdelivr-css" type="text/css"
+              media="none" onload="if(media!='all')media='all'"
+            />
           ])}
           <link rel="manifest" href={`${appRootUrl}/manifest.json`} />
           {
