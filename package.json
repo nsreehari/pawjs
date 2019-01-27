@@ -6,14 +6,14 @@
   "scripts": {
     "prepare-demo": "node ./prepare-packages.js && echo PREPARING && cd hfn-apps && npm install && npm run fix-memory-limit && cd ..",
     "build": "echo BUILDING && npm run build:prod",
-    "build:dev": "node ./paw.js  --root=./hfn-apps --env=development --verbose build",
-    "build:prod": "node ./paw.js  --root=./hfn-apps --env=production build",
+    "build:dev": "node ./paw.js --no-cache --root=./hfn-apps --env=development --verbose build",
+    "build:prod": "node ./paw.js --no-cache --root=./hfn-apps --env=production build",
     "lint": "node ./paw.js lint",
     "lint:fix": "eslint -c ./.eslintrc --ignore-path ./.gitignore --fix ./src",
     "publish-npm:beta": "npm publish --tag=next",
     "start": "npm run start:dev",
-    "start:dev": "node ./paw.js  --root=./hfn-apps --env=development --verbose start",
-    "start:prod": "node ./paw.js  --root=./hfn-apps --env=production start",
+    "start:dev": "node ./paw.js --no-cache --root=./hfn-apps --env=development --verbose start",
+    "start:prod": "node ./paw.js --no-cache --root=./hfn-apps --env=production start",
     "fix-memory-limit": "cd hfn-apps && cross-env LIMIT=4192 increase-memory-limit",
     "test:hfn-apps": "cross-env PROJECT_ROOT=./hfn-apps node ./paw.js --no-cache --verbose test",
     "test": "cross-env node ./paw.js test"
